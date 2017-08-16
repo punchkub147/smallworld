@@ -1,0 +1,109 @@
+body{
+}
+
+#a{
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+  display: block;
+  padding: .5rem 1rem;
+}
+
+#Header{
+  
+}
+
+#Banner{
+  width: 100%;
+  height: auto;
+  padding: 50px;
+  background: lightblue;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  .jumbotron{
+    background-color: none;
+  }
+  h1{
+    font-size: 60px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+  }
+  h3{
+    font-size: 18px;
+  }
+  p{
+    font-size: 18px;
+    color: #333;
+  }
+}
+
+
+#Home{
+  .content{
+    padding: 30px 50px;
+    box-sizing: border-box;
+    background: lightblue;
+  }
+}
+
+#FromLogin{
+  width: 100%;
+  height: auto;
+  background: white;
+  padding: 30px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  .title{
+    width: 100%;
+    text-align: center;
+    line-height: 50px;
+  }
+  input{
+    width: 100%;
+  }
+}
+
+#Carousel{
+  background: white;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#Service{
+  text-align: center;
+  padding: 50px;
+  box-sizing: border-box;
+  h1{
+    font-size: 50px;
+    color: #0a3a61;
+    font-weight: bold;
+  } 
+  h3{
+    font-size: 18px;
+  }
+  .card{
+    text-align: center;
+    padding: 30px;
+    box-sizing: border-box;
+    border: none;
+    .icon{
+      width: 100%;
+      text-align: center;
+      img{
+        width: 150px;
+        color: red;
+      }
+    }
+    .title{
+      font-size: 24px;
+      font-weight: bold;
+      color: #0a3a61;
+    }
+    .description{
+      font-size: 18px;
+
+    }
+  }
+}
