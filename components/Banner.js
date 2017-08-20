@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 import { Jumbotron, Button } from 'reactstrap';
+import { Parallax } from 'react-parallax';
+import FormSearch from './FormSearch'
 
-class Banner extends Component {
-  state = {  }
+export default class extends Component {
   render() {
     return (
       <div id="Banner">
         <Jumbotron style={{background: 'none'}}>
-          <h1 className="display-3">Small World Service Center</h1>
+          <h1 className="display-3">Small World</h1>
+          <h2 className="display-3"><span className="border">Service Center</span></h2>
+          <br/>
           <p className="lead">This is a simple hero unit, a simple Jumbotron-style component for calling extra attention to featured content or information.</p>
           <hr className="my-2" />
           <p>It uses utility classes for typgraphy and spacing to space content out within the larger container.</p>
-          <p className="lead">
-            <Button color="primary">Learn More</Button>
-          </p>
-      </Jumbotron>
+
+          <FormSearch/>
+
+        </Jumbotron>
       </div>
     );
   }
 }
-
-export default Banner;

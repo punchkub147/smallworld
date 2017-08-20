@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import Carousel from 'nuka-carousel';
 import ImageGallery from 'react-image-gallery';
 
-class myCarousel extends Component {
+export default class extends Component {
 
   handleImageLoad(event) {
-    console.log('Image loaded ', event.target)
+    // console.log('Image loaded ', event.target)
   }
 
   render() {
@@ -32,5 +32,3 @@ class myCarousel extends Component {
     );
   }
 }
-
-export default myCarousel;

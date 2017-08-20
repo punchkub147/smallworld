@@ -1,29 +1,22 @@
 import React, { Component } from 'react'
 import Layout from '../layouts'
 
+import { Container, Row, Col } from 'reactstrap';
+
 import Banner from '../components/Banner';
-import FromRegister from '../components/FromRegister';
+import FormRegister from '../components/FormRegister';
 import Carousel from '../components/Carousel';
 import Service from '../components/Service';
 
-export default class Index extends Component {
+export default class extends Component {
   render(){
     return(
-      <Layout>
+      <Layout url={this.props.url}>
         <div id="Home">
           <Banner/>
           
-          <div className="content">
-            <div className="row">
-              <div className="col-sm-12 col-md-12 col-lg-3">
-                <FromRegister/>
-              </div>
-              <div className="col-sm-12 col-md-12 col-lg-9">
-                <Carousel/>
-              </div>
-            </div>
-          </div>
-
+          <Carousel/>
+          
           <Service/>
          
         </div>

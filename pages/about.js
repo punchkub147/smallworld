@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import Layout from '../layouts'
+import PageName from '../components/PageName'
 
-export default class About extends Component {
+import { Container, Row, Col, 
+ } from 'reactstrap';
+
+export default class extends Component {
   render(){
     return(
-      <Layout>
+      <Layout url={this.props.url}>
         <div id="About">
-          <p>ABOUT</p>
+          <PageName text="ABOUT US"/>
+          <br/>
         </div>
       </Layout>
     )

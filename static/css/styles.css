@@ -1,62 +1,130 @@
-#a {
-  color: #007bff;
-  text-decoration: none;
-  background-color: transparent;
-  -webkit-text-decoration-skip: objects;
-  display: block;
-  padding: .5rem 1rem; }
+input[type="button"] {
+  outline: none; }
 
-#Header .login {
-  color: red; }
+input[type="button"]::-moz-focus-inner {
+  border: 0; }
+
+.btn-primary, .btn-primary:hover, .btn-primary:focus {
+  background: #d9c5a4;
+  border-color: #d9c5a4; }
+
+a {
+  text-decoration: none; }
+
+button {
+  cursor: pointer; }
+
+#App {
+  min-height: 100vh;
+  position: relative; }
+
+#Navbar {
+  border-bottom: 10px solid #d9c5a4; }
+  #Navbar .login {
+    color: red; }
+  #Navbar .nav-group {
+    margin-right: 10px; }
+  #Navbar ul li a {
+    text-decoration: none;
+    color: #aaa; }
+  #Navbar #active a {
+    color: #d9c5a4; }
+  #Navbar .dropdown-menu {
+    right: 0; }
 
 #Banner {
   width: 100%;
   height: auto;
-  padding: 50px;
-  background: lightblue;
+  background: #b6d379;
+  background-image: url("../img/banner.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   margin-bottom: 20px;
   box-sizing: border-box; }
   #Banner .jumbotron {
-    background-color: none; }
+    background-color: none;
+    text-align: right; }
+  #Banner .border {
+    border-bottom: 5px solid #d9c5a4; }
   #Banner h1 {
-    font-size: 60px;
-    text-align: center;
-    color: white;
+    color: #b6d379;
+    font-weight: bold; }
+  #Banner h2 {
+    color: #b6d379;
     font-weight: bold; }
   #Banner h3 {
     font-size: 18px; }
   #Banner p {
     font-size: 18px;
     color: #333; }
+  @media (max-width: 576px) {
+    #Banner h1 {
+      font-size: 40px;
+      text-align: center; }
+    #Banner h2 {
+      font-size: 35px;
+      text-align: center; } }
+  @media (min-width: 768px) {
+    #Banner {
+      padding: 50px; }
+      #Banner .jumbotron {
+        padding: 0 50px; }
+      #Banner h1 {
+        font-size: 100px;
+        text-align: right; }
+      #Banner h2 {
+        width: auto;
+        font-size: 60px;
+        text-align: right; }
+      #Banner h3 {
+        text-align: right; }
+      #Banner p {
+        text-align: right; } }
+
+#PageName {
+  padding: 20px 0;
+  border-bottom: 10px solid #7E9848;
+  background-color: #b6d379;
+  color: white; }
+  #PageName p {
+    font-size: 40px;
+    font-weight: bold; }
+    #PageName p .border {
+      border-bottom: 5px solid #d9c5a4; }
 
 #Home .content {
-  padding: 30px 50px;
+  padding: 30px 20px;
   box-sizing: border-box;
-  background: lightblue; }
+  background: #b6d379; }
 
-#FromRegister {
+#FormRegister {
   width: 100%;
   height: auto;
-  background: white;
-  padding: 30px;
   box-sizing: border-box;
   border-radius: 10px; }
-  #FromRegister .title {
+  #FormRegister h1 {
+    font-size: 24px;
+    text-align: left; }
+  #FormRegister .title {
     width: 100%;
-    text-align: center;
+    text-align: left;
     line-height: 50px; }
-  #FromRegister input {
+  #FormRegister input {
     width: 100%; }
 
-#FromLogin .title {
+#FormLogin .title {
   width: 100%;
-  text-align: center;
+  text-align: left;
   line-height: 50px; }
 
 #Carousel {
-  background: white;
-  padding: 10px;
+  border-radius: 10px;
   box-sizing: border-box; }
+  #Carousel .image-gallery-slide img {
+    max-height: 500px;
+    object-fit: cover; }
 
 #Service {
   text-align: center;
@@ -64,7 +132,7 @@
   box-sizing: border-box; }
   #Service h1 {
     font-size: 50px;
-    color: #0a3a61;
+    color: #d9c5a4;
     font-weight: bold; }
   #Service h3 {
     font-size: 18px; }
@@ -76,23 +144,157 @@
     #Service .card .icon {
       width: 100%;
       text-align: center; }
-      #Service .card .icon img {
-        width: 150px;
-        color: red; }
+      #Service .card .icon svg {
+        width: 150px; }
+        #Service .card .icon svg path {
+          fill: #d9c5a4; }
     #Service .card .title {
       font-size: 24px;
       font-weight: bold;
-      color: #0a3a61; }
+      color: #d9c5a4; }
     #Service .card .description {
       font-size: 18px; }
 
 #User {
-  padding-top: 30px;
-  background: lightblue;
-  min-height: 100vh;
   box-sizing: border-box; }
+  #User h1 {
+    font-size: 60px;
+    color: white;
+    font-weight: bold; }
+  #User .head {
+    background: #b6d379; }
 
-#UserCard .image {
-  height: 200px; }
+#UserCard {
+  margin-bottom: 30px; }
+  #UserCard .image {
+    height: 250px;
+    object-fit: cover;
+    cursor: pointer; }
+  #UserCard .description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    /* number of lines to show */
+    max-height: 4.5;
+    line-height: 1.5; }
+  #UserCard .card:hover {
+    box-shadow: 0 0 10px #ccc; }
+
+#Pricing {
+  text-align: center;
+  box-sizing: border-box; }
+  #Pricing h1 {
+    font-size: 50px;
+    color: #d9c5a4;
+    font-weight: bold; }
+  #Pricing h3 {
+    font-size: 18px; }
+  #Pricing .PricingCard {
+    text-align: center;
+    border-radius: 10px; }
+    #Pricing .PricingCard .title {
+      height: 100px;
+      line-height: 100px;
+      font-size: 24px;
+      background: #b6d379;
+      border-radius: 10px 10px 0 0;
+      text-align: center;
+      color: white;
+      font-weight: bold; }
+    #Pricing .PricingCard .detail {
+      text-align: left;
+      font-size: 18px;
+      height: 250px; }
+    #Pricing .PricingCard .price {
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold; }
+  #Pricing .PricingCard:hover {
+    box-shadow: 0 0 10px #ccc; }
+
+#Profile {
+  padding-top: 30px; }
+  #Profile .head {
+    height: 150px;
+    text-align: center; }
+    #Profile .head h1 {
+      line-height: 150px; }
+  #Profile .detail {
+    padding: 20px; }
+  #Profile .card-user .menu-edit {
+    margin-top: 20px; }
+    #Profile .card-user .menu-edit p {
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      color: #aaa;
+      text-align: center;
+      cursor: pointer; }
+  #Profile .card-user label {
+    margin-bottom: 0; }
+  #Profile .card-user img {
+    height: 250px;
+    object-fit: cover; }
+  #Profile #active {
+    color: white;
+    background: #d9c5a4;
+    border: none; }
+  #Profile .list-group-item:focus, #Profile .list-group-item:active, #Profile .list-group-item:hover {
+    outline: none; }
+
+#Contact .head {
+  background-color: #b6d379;
+  padding: 50px;
+  color: white; }
+  #Contact .head .icon {
+    width: 100%;
+    height: auto; }
+  @media (max-width: 576px) {
+    #Contact .head .icon {
+      text-align: center; }
+    #Contact .head .text {
+      text-align: center;
+      margin-bottom: 20px; } }
+  @media (min-width: 768px) {
+    #Contact .head .icon {
+      text-align: center; }
+    #Contact .head .text {
+      text-align: left; } }
+
+#Footer {
+  width: 100%;
+  height: 80px;
+  padding-top: 50px;
+  bottom: 0;
+  text-align: center; }
+  #Footer .connect {
+    width: 100%;
+    min-height: 80px;
+    color: white;
+    font-size: 30px;
+    line-height: 80px;
+    background: #b6d379; }
+    #Footer .connect .text {
+      float: left; }
+    #Footer .connect button {
+      float: right;
+      margin-top: 25px; }
+  #Footer .content {
+    padding: 30px 0;
+    background: #333;
+    text-align: left;
+    color: white; }
+    #Footer .content h5 {
+      margin-bottom: 20px; }
+    #Footer .content a {
+      color: white; }
+
+.custom-control-input:checked ~ .custom-control-indicator {
+  background-color: #b6d379; }
+
+.custom-control-input:focus ~ .custom-control-indicator:focus, .custom-control-input:active ~ .custom-control-indicator:active {
+  background-color: #b6d379; }
 
 /*# sourceMappingURL=styles.css.map */

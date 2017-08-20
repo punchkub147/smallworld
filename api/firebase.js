@@ -42,6 +42,13 @@ export const getRealTimeData = async (ref, callback) => {
   })
 }
 
+export const getUserData = async (uid) => {
+  const firebase = await connect()
+  const db = await firebase.database().ref();
+  const user = await db.child('users').child(uid).once('value')
+  return user.val()
+}
+
 export const createItem = async (item) => {
   const firebase = await connect()
   const db = await firebase.database().ref();
@@ -92,17 +99,20 @@ export const deleteAt = async (ref, key) => {
 
 /////////////////// STORAGE ////////////////////////
 
-// export const storageVision = async (file) => {
-//   const imageId = cuid();
-//   const storageImage = await storage.child(imageId);
-//   await storageImage.put(file);
-//   const imageUri = await storageImage.getDownloadURL();
+export const changeProfileImage = async (file,uid) => {
+  const firebase = await connect()
+  const db = await firebase.database().ref()
+  const storage = await firebase.storage().ref()
+  console.log('changeProfileImage', file, uid)
+  const storageImage = await storage.child('image').child('users').child(uid);
 
-//   const res = await vision(imageUri);
+  // await storageImage.delete();
+  await storageImage.put(file);
 
-//   storageImage.delete();
-//   return res;
-// };
+  const imageUrl = await storageImage.getDownloadURL();
+  
+  db.child('users').child(uid).update({imageUrl})
+};
 
 /////////////////// AUTH ////////////////////////
 
@@ -139,18 +149,27 @@ export const loginWithFacebook = async (callback) => {
   provider.addScope('public_profile');
   provider.addScope('email');
   provider.addScope('user_photos');
-  
-  // provider.setCustomParameters({
-  //   'display': 'popup'
-  // });
+  provider.addScope('user_birthday');
+  provider.setCustomParameters({
+    'display': 'popup'
+  });
   auth.signInWithPopup(provider).then((result) => {
+    console.log('facebookdatauser', result)
     const userMap = {
       displayName: result.user.displayName,
       imageUrl: result.user.photoURL,
       email: result.user.email,
       uid: result.user.uid,
     }
-  db.child('users').child(userMap.uid).update(userMap)
+    const userDetail = {
+      // firstName: result.additionalUserInfo.profile.first_name,
+      // lastName: result.additionalUserInfo.profile.last_name,
+      age: result.additionalUserInfo.profile.age_range.min,
+      gender: result.additionalUserInfo.profile.gender,
+      // birthday: result.additionalUserInfo.profile.birthday,
+    }
+    db.child('users').child(userMap.uid).update(userMap)
+    db.child('users').child(userMap.uid).child('detail').update(userDetail)
   }).catch(error => {
     console.log('FACEBOOK ERROR', error)
     callback(error.message)

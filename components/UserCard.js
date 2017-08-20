@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
+import _ from 'lodash'
 import { Card, CardImg, CardText, CardBlock,
   CardTitle, CardSubtitle, Button } from 'reactstrap';
+import Link from 'next/link'
 
 class UserCard extends Component {
-  state = {  }
   render() {
     const { user } = this.props
-    console.log('UUUU', this.props)
     return (
       <div id="UserCard">
         <Card>
-          <CardImg className="image" top width="100%" src={user.imageUrl&&user.imageUrl} alt="Card image cap" />
+          <Link href="/">
+            <CardImg className="image" top width="100%" src={!_.isEmpty(user.imageUrl)?user.imageUrl:'https://cdn1.iconfinder.com/data/icons/IconsLandVistaPeopleIconsDemo/256/Person_Undefined_Female_Dark.png'} alt="Card image cap" />
+          </Link>
           <CardBlock>
-            <CardTitle>{user.displayName&&user.displayName}</CardTitle>
-            <CardSubtitle>{user.email&&user.email}</CardSubtitle>
-            <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-            <Button>Button</Button>
+            <CardTitle></CardTitle>
+            <CardSubtitle>{user.displayName&&user.displayName}</CardSubtitle>
+            <CardText className="description"></CardText>
           </CardBlock>
         </Card>
       </div>
