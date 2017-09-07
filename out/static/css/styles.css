@@ -18,29 +18,10 @@ button {
   min-height: 100vh;
   position: relative; }
 
-#Navbar {
-  border-bottom: 10px solid #d9c5a4; }
-  #Navbar .login {
-    color: red; }
-  #Navbar .nav-group {
-    margin-right: 10px; }
-  #Navbar ul li a {
-    text-decoration: none;
-    color: #aaa; }
-  #Navbar #active a {
-    color: #d9c5a4; }
-  #Navbar .dropdown-menu {
-    right: 0; }
-
 #Banner {
   width: 100%;
-  height: auto;
   background: #b6d379;
-  background-image: url("../img/banner.jpg");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  padding-bottom: 30px;
   margin-bottom: 20px;
   box-sizing: border-box; }
   #Banner .jumbotron {
@@ -49,16 +30,25 @@ button {
   #Banner .border {
     border-bottom: 5px solid #d9c5a4; }
   #Banner h1 {
-    color: #b6d379;
+    color: white;
     font-weight: bold; }
   #Banner h2 {
-    color: #b6d379;
+    color: white;
     font-weight: bold; }
   #Banner h3 {
     font-size: 18px; }
   #Banner p {
     font-size: 18px;
     color: #333; }
+  #Banner .logo {
+    position: relative;
+    z-index: 3;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 50px; }
+    #Banner .logo img {
+      width: 100%; }
   @media (max-width: 576px) {
     #Banner h1 {
       font-size: 40px;
@@ -81,24 +71,23 @@ button {
       #Banner h3 {
         text-align: right; }
       #Banner p {
-        text-align: right; } }
+        text-align: right; }
+      #Banner .logo {
+        width: 100%;
+        padding-top: 0px; }
+      #Banner .imageBanner {
+        background-image: url("../img/imageBanner.png");
+        position: absolute;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: 100px 0;
+        background-size: 500px auto; } }
 
-#PageName {
-  padding: 20px 0;
-  border-bottom: 10px solid #7E9848;
-  background-color: #b6d379;
-  color: white; }
-  #PageName p {
-    font-size: 40px;
-    font-weight: bold; }
-    #PageName p .border {
-      border-bottom: 5px solid #d9c5a4; }
-
-#Home .content {
-  padding: 30px 20px;
-  box-sizing: border-box;
-  background: #b6d379; }
-
+@media (min-width: 768px) {
+  #Banner {
+    height: 70vh; } }
 #FormRegister {
   width: 100%;
   height: auto;
@@ -132,13 +121,14 @@ button {
   box-sizing: border-box; }
   #Service h1 {
     font-size: 50px;
-    color: #d9c5a4;
+    color: #5d7925;
     font-weight: bold; }
   #Service h3 {
     font-size: 18px; }
   #Service .card {
     text-align: center;
     padding: 30px;
+    margin-bottom: 30px;
     box-sizing: border-box;
     border: none; }
     #Service .card .icon {
@@ -147,22 +137,13 @@ button {
       #Service .card .icon svg {
         width: 150px; }
         #Service .card .icon svg path {
-          fill: #d9c5a4; }
+          fill: #5d7925; }
     #Service .card .title {
       font-size: 24px;
       font-weight: bold;
-      color: #d9c5a4; }
+      color: #b6d379; }
     #Service .card .description {
       font-size: 18px; }
-
-#User {
-  box-sizing: border-box; }
-  #User h1 {
-    font-size: 60px;
-    color: white;
-    font-weight: bold; }
-  #User .head {
-    background: #b6d379; }
 
 #UserCard {
   margin-bottom: 30px; }
@@ -181,6 +162,50 @@ button {
     line-height: 1.5; }
   #UserCard .card:hover {
     box-shadow: 0 0 10px #ccc; }
+
+#NewsThumbnail .title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  /* number of lines to show */
+  max-height: 1.5;
+  line-height: 1.5; }
+#NewsThumbnail .detail {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  /* number of lines to show */
+  max-height: 4.5;
+  line-height: 1.5; }
+#NewsThumbnail .image {
+  height: 200px;
+  object-fit: contain; }
+
+#NewsBigThumbnail .title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  /* number of lines to show */
+  max-height: 1.5;
+  line-height: 1.5; }
+#NewsBigThumbnail .detail {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  /* number of lines to show */
+  max-height: 7.5;
+  line-height: 1.5; }
+#NewsBigThumbnail .image {
+  height: 250px;
+  object-fit: contain; }
 
 #Pricing {
   text-align: center;
@@ -280,7 +305,7 @@ button {
       float: left; }
     #Footer .connect button {
       float: right;
-      margin-top: 25px; }
+      margin-top: 23px; }
   #Footer .content {
     padding: 30px 0;
     background: #333;
@@ -289,7 +314,9 @@ button {
     #Footer .content h5 {
       margin-bottom: 20px; }
     #Footer .content a {
-      color: white; }
+      color: white;
+      display: block;
+      margin-bottom: 15px; }
 
 .custom-control-input:checked ~ .custom-control-indicator {
   background-color: #b6d379; }

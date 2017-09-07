@@ -42,6 +42,13 @@ export const getRealTimeData = async (ref, callback) => {
   })
 }
 
+export const getAt = async (ref, id) => {
+  const firebase = await connect()
+  const db = await firebase.database().ref();
+  const snapshot = await db.child(ref).child(id).once('value')
+  return snapshot.val()
+}
+
 export const getUserData = async (uid) => {
   const firebase = await connect()
   const db = await firebase.database().ref();
@@ -49,12 +56,13 @@ export const getUserData = async (uid) => {
   return user.val()
 }
 
-export const createItem = async (item) => {
+export const createNews = async (item) => {
   const firebase = await connect()
   const db = await firebase.database().ref();
-  db.child('items').push({
+  db.child('news').push({
     id: _.get(item, 'id')? item.id : '',
-    name: _.get(item, 'name')? item.name : '',
+    image: _.get(item, 'image')? item.image : '',
+    title: _.get(item, 'title')? item.title : '',
     detail: _.get(item, 'detail')? item.detail : '',
     createAt: moment().format(),
   })
@@ -114,6 +122,19 @@ export const changeProfileImage = async (file,uid) => {
   db.child('users').child(uid).update({imageUrl})
 };
 
+export const uploadNewsImage = async (file, id) => {
+  const firebase = await connect()
+  const db = await firebase.database().ref()
+  const storage = await firebase.storage().ref()
+  const storageImage = await storage.child('image').child('news').child(id);
+
+  // await storageImage.delete();
+  await storageImage.put(file);
+
+  const imageUrl = await storageImage.getDownloadURL();
+  return imageUrl
+};
+
 /////////////////// AUTH ////////////////////////
 
 export const getUser = async (callback) => {
@@ -157,7 +178,7 @@ export const loginWithFacebook = async (callback) => {
     console.log('facebookdatauser', result)
     const userMap = {
       displayName: result.user.displayName,
-      imageUrl: result.user.photoURL,
+      // imageUrl: result.user.photoURL,
       email: result.user.email,
       uid: result.user.uid,
     }

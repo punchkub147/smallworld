@@ -10,12 +10,12 @@ class UserCard extends Component {
     return (
       <div id="UserCard">
         <Card>
-          <Link href="/">
+          <Link href={`/profile/view?uid=${user.uid}`}>
             <CardImg className="image" top width="100%" src={!_.isEmpty(user.imageUrl)?user.imageUrl:'https://cdn1.iconfinder.com/data/icons/IconsLandVistaPeopleIconsDemo/256/Person_Undefined_Female_Dark.png'} alt="Card image cap" />
           </Link>
           <CardBlock>
             <CardTitle></CardTitle>
-            <CardSubtitle>{user.displayName&&user.displayName}</CardSubtitle>
+            <CardSubtitle>{_.get(user, 'detail.firstName')} {_.get(user, 'detail.lastName')}</CardSubtitle>
             <CardText className="description"></CardText>
           </CardBlock>
         </Card>

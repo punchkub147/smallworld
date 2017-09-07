@@ -11,6 +11,7 @@ export const userModel = (user) => {
     job: {
       teacher: _.get(user, 'job.teacher')? user.job.teacher : null,
       nanny: _.get(user, 'job.nanny')? user.job.nanny : null,
+      workTime: _.get(user, 'job.workTime')? user.job.workTime : null,
     },
 
     detail: {
@@ -33,6 +34,7 @@ export const userModel = (user) => {
       education: _.get(user, 'detail.education')? user.detail.education : null,
       status: _.get(user, 'detail.status')? user.detail.status : null,
       stayThaiTime: _.get(user, 'detail.stayThaiTime')? user.detail.stayThaiTime : null,
+      location: _.get(user, 'detail.location')? user.detail.location : null,
     },
 
     ability: {

@@ -5,9 +5,13 @@ import { Col, Button, Form, FormGroup,
 import Router from 'next/router'
 import _ from 'lodash'
 
-export default class extends Component {
+// REDUX
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+class FormSearch extends Component {
   state = { 
-    saraly: 'All',
+    salary: 'All',
     ageRange: 'All',
     nationality: 'All',
     location: 'All',
@@ -19,10 +23,10 @@ export default class extends Component {
 
   componentDidMount() {
     const { query } = Router.router
-    const { saraly, ageRange, nationality, location, position, workTime, skill } = query
+    const { salary, ageRange, nationality, location, position, workTime, skill } = query
     this.setState({
       ...this.state,
-      saraly,
+      salary,
       ageRange,
       nationality,
       location,
@@ -34,15 +38,15 @@ export default class extends Component {
 
   handleSearch = (e) => {
     e.preventDefault()
-    const { saraly, ageRange, nationality, location, position, workTime, skill } = this.state
+    const { salary, ageRange, nationality, location, position, workTime, skill } = this.state
     const query = {
-      saraly: saraly?saraly:'All',
+      salary: salary?salary:'All',
       ageRange: ageRange?ageRange:'All',
       nationality: nationality?nationality:'All',
       location: location?location:'All',
       position: position?position:'All',
-      workTime: workTime?workTime:'All Time',
-      skill: skill?skill:'All',
+      workTime: workTime?workTime:'All',
+      // skill: skill?skill:'All',
     }
     Router.push({
       pathname: '/user',
@@ -58,78 +62,63 @@ export default class extends Component {
   }
 
   render() {
-    const { saraly, ageRange, nationality, location, position, workTime, skill } = this.state
-    const selectAge = ['All','20-29','30-39','40-49','50+']
-    const selectNation = ['All','Myanmar','Thai','Philippine','Laos','Cambodia']
-    const selectLocation = ['All','Bangkok','Nonthaburi','Don Muang','Pattaya','Chiang Mai','Hua Hin','Phuket','Ko Samui']
-    const selectPosition = ['All','Maid&Nanny','Nursery','Teacher@Home']
-    const selectworkTime = ['All Time','Full Time','Part Time']
+    const { messages } = this.props
+    const { salary, ageRange, nationality, location, position, workTime, skill } = this.state
+
     //const selectSkill = ['Speak Thai','Speak English','Speak Chinese','Cook']
+    const fullSelect = [
+      {
+        label: messages['Salary'],
+        value: ['All','0 - 10,000','10,000 - 20,000','20,000 - 30,000','30,000+'],
+        ref: 'salary',
+      },
+      {
+        label: messages['Age range'],
+        value: ['All','20 - 29','30 - 39','40 - 49','50+'],
+        ref: 'ageRange',
+      },
+      {
+        label: messages['Nationality'],
+        value: ['All','Myanmar','Thai','Philippine','Laos','Cambodia'],
+        ref: 'nationality',
+      },
+      {
+        label: messages['Location'],
+        value: ['All','Bangkok','Nonthaburi','Don Muang','Pattaya','Chiang Mai','Hua Hin','Phuket','Ko Samui'],
+        ref: 'location',
+      },
+      {
+        label: messages['Position'],
+        value: ['All','Maid&Nanny','Nursery','Teacher@Home'],
+        ref: 'position',
+      },
+      {
+        label: messages['Work Time'],
+        value: ['All','Full Time','Part Time'],
+        ref: 'workTime',
+      },
+    ]
 
     const form = (
       <Form onSubmit={this.handleSearch}>
-        <FormGroup row>
-          <Label sm={3}>Age range</Label>
+        {/*<FormGroup row>
+          <Label sm={3}>{messages['Salary']}</Label>
           <Col sm={9}>
-            <Input type="select" onChange={(e) => this.setState({ageRange: e.target.value})}>
-            {_.map(selectAge, val =>
-              <option val={val} selected={ageRange === val}>{val}</option>
+            <Input type="search" placeholder="maximum salary"  onChange={(e) => this.setState({salary: e.target.value})}/>
+          </Col>
+        </FormGroup>*/}
+      {_.map(fullSelect, select =>
+        <FormGroup row>
+          <Label sm={3}>{select.label}</Label>
+          <Col sm={9}>
+            <Input type="select" onChange={(e) => this.setState({[select.ref]: e.target.value})}>
+            {_.map(select.value, val =>
+              <option val={val} selected={this.state[select.ref] === val}>{val}</option>
             )}
           </Input>
           </Col>
         </FormGroup>
-
-        <FormGroup row>
-          <Label sm={3}>Salary</Label>
-          <Col sm={9}>
-            <Input type="search" placeholder="maximum salary"  onChange={(e) => this.setState({saraly: e.target.value})}/>
-          </Col>
-        </FormGroup>
-
-        <FormGroup row>
-          <Label sm={3}>Nationality</Label>
-          <Col sm={9}>
-            <Input type="select" onChange={(e) => this.setState({nationality: e.target.value})}>
-            {_.map(selectNation, val =>
-              <option val={val} selected={nationality === val}>{val}</option>
-            )}
-            </Input>
-          </Col>
-        </FormGroup>
-        
-        <FormGroup row>
-          <Label sm={3}>Location</Label>
-          <Col sm={9}>
-            <Input type="select" onChange={(e) => this.setState({location: e.target.value})}>
-            {_.map(selectLocation, val =>
-              <option val={val} selected={location === val}>{val}</option>
-            )}
-            </Input>
-          </Col>
-        </FormGroup>
-
-        <FormGroup row>
-          <Label sm={3}>Position</Label>
-          <Col sm={9}>
-            <Input type="select" onChange={(e) => this.setState({position: e.target.value})}>
-            {_.map(selectPosition, val =>
-              <option val={val} selected={position === val}>{val}</option>
-            )}
-            </Input>
-          </Col>
-        </FormGroup>
-
-        <FormGroup row>
-          <Label sm={3}>Work Time</Label>
-          <Col sm={9}>
-            <Input type="select" onChange={(e) => this.setState({workTime: e.target.value})}>
-            {_.map(selectworkTime, val =>
-              <option val={val} selected={workTime === val}>{val}</option>
-            )}
-            </Input>
-          </Col>
-        </FormGroup>
-        
+      )}
         {/*
         <FormGroup row>
           <Label sm={3}>Skill</Label>
@@ -152,17 +141,17 @@ export default class extends Component {
           </Col>
         </FormGroup>
         */}
-        <Button color="primary" size="lg" block onSubmit={this.handleSearch}>ค้นหา</Button>
+        <Button color="primary" size="lg" block onSubmit={this.handleSearch}>{messages['Search']}</Button>
       </Form>
     )
 
     return (
       <div id="Search">
 
-        <Button color="primary" onClick={this.openModal}>Search Nanny</Button>
+        <Button color="primary" onClick={this.openModal}>{messages['Search Nanny']}</Button>
         
         <Modal isOpen={this.state.modal} toggle={this.openModal}>
-          <ModalHeader toggle={this.openModal}>Search Nanny</ModalHeader>
+          <ModalHeader toggle={this.openModal}>{messages['Search Nanny']}</ModalHeader>
           <ModalBody>
             {form}
           </ModalBody>
@@ -171,3 +160,17 @@ export default class extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    messages: state.messages,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // actions: bindActionCreators(actions, dispatch),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormSearch)

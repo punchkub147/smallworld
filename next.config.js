@@ -6,7 +6,10 @@ module.exports = {
       "/user": { page: "/user" },
       "/contact": { page: "/contact" },
       "/service": { page: "/service" },
-      //"/profile/info": { page: "/profile/info" },
+      "/profile/edit": { page: "/profile/edit" },
+      "/profile/view": { page: "/profile/view" },
+      "/news": { page: "/news" },
+      "/news/detail": { page: "/news/detail" },
     }
   },
 }

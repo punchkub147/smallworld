@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Layout from '../layouts'
+import { color } from '../static/styles'
+import styled from 'styled-components'
 
 import { Container, Row, Col } from 'reactstrap';
 
@@ -7,20 +9,64 @@ import Banner from '../components/Banner';
 import FormRegister from '../components/FormRegister';
 import Carousel from '../components/Carousel';
 import Service from '../components/Service';
+import NewsFeed from '../components/News/Feed';
 
-export default class extends Component {
+//////// REDUX ///////
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { initStore } from '../store'
+import withRedux from 'next-redux-wrapper'
+
+class Home extends Component {
+
+  componentDidMount() {
+
+  }
+
   render(){
     return(
       <Layout url={this.props.url}>
-        <div id="Home">
+        <ID>
           <Banner/>
           
-          <Carousel/>
+          <Row className="content">
+            <Col sm="12" md="4">
+              <div className="register">
+                <FormRegister/>
+              </div>
+            </Col>
+            <Col sm="12" md="8">
+              <Carousel/>
+            </Col>
+          </Row>
           
+          <NewsFeed/>
           <Service/>
          
-        </div>
+        </ID>
       </Layout>
     )
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // changeLanguage: bindActionCreators(changeLanguage, dispatch),
+  };
+};
+
+export default withRedux(initStore, null, mapDispatchToProps)(Home)
+
+const ID = styled.div`
+  .content{
+    margin: 0;
+    padding: 30px 10px;
+    box-sizing: border-box;
+    background: ${color.main};
+
+    .register{
+      padding: 20px;
+      background: white;
+    }
+  }
+`

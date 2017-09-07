@@ -1,16 +1,53 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button } from 'reactstrap';
 import Link from 'next/link'
+import _ from 'lodash'
 
-export default class extends Component {
-  state = {  }
+import FormSearch from '../components/FormSearch'
+// REDUX
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { changeLanguage } from '../store'
+
+class MyFooter extends Component {
+  state = {  
+    messages: {},
+  }
+
   render() {
+    const { messages } = this.props
+    const routes = [
+      {
+        path: '/',
+        name: messages['Home'],
+      },
+      {
+        path: '/about',
+        name: messages['About'],
+      },
+      {
+        path: '/news',
+        name: messages['News'],
+      },
+      {
+        path: '/user',
+        name: messages['Teacher&Nanny'],
+      },
+      {
+        path: '/service',
+        name: messages['Services&Pricing'],
+      },
+      {
+        path: '/contact',
+        name: messages['Contact'],
+      },
+    ]
     return (
       <div id="Footer">
         <div className="connect">
           <Container>
             <div className="text">GET START</div>
-            <Button color="primary">GET START >></Button>
+            <FormSearch/>
           </Container>
         </div>
 
@@ -24,17 +61,18 @@ export default class extends Component {
                 <p>Nursery</p>
                 <p>Nursery</p>
                 <p>Teacher@Home</p>
+                
                 <Button color="primary">VIEW</Button>
                 <br/>
                 <br/>
               </Col>
               <Col xs="12" md="4">
                 <h5>Quick Links</h5>
-                <p><Link perfect href="/">Home</Link></p>
-                <p><Link perfect href="/about">About</Link></p>
-                <p><Link perfect href="/user">Search</Link></p>
-                <p><Link perfect href="/service">Service & Pricing</Link></p>
-                <p><Link perfect href="/contact">Contact</Link></p>
+                {_.map(routes, route =>
+                  <Link perfect href={route.path}><a>{route.name}</a></Link>
+                )}
+                <a style={{cursor: 'pointer', float:'left', 'margin-right':'10px'}} onClick={() => this.props.changeLanguage('th')}>TH</a>
+                <a style={{cursor: 'pointer', float:'left'}} onClick={() => this.props.changeLanguage('en')}>EN</a>
                 <br/>
               </Col>
               <Col xs="12" md="4">
@@ -52,3 +90,17 @@ export default class extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    messages: state.messages
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeLanguage: bindActionCreators(changeLanguage, dispatch),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyFooter)

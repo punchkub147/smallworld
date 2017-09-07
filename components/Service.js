@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
+import _ from 'lodash'
+
+// REDUX
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 class Service extends Component {
 
   render() {
+    const { messages } = this.props
     const datas = [
       {
         img: '/static/img/cleaning-lady.svg',
-        title: 'Maid&Nanny',
+        title: _.get(messages, 'Maid&Nanny'),
         description: 'Maid&Nanny',
         svg: (
           <svg width="100%" height="100%" viewBox="0 0 32 32">
@@ -20,8 +26,8 @@ class Service extends Component {
           </svg>)
       },
       {
-        img: '/static/img/nurse.svg',
-        title: 'Nursery',
+        img: '/static/img/female-professor-reading-a-book.svg',
+        title: _.get(messages, 'Nursery'),
         description: 'Nursery',
         svg: (
           <svg width="100%" height="100%" viewBox="0 0 32 32">
@@ -29,8 +35,8 @@ class Service extends Component {
           </svg>)
       },
       {
-        img: '/static/img/female-professor-reading-a-book.svg',
-        title: 'Teacher@Home',
+        img: '/static/img/nurse.svg',
+        title: _.get(messages, 'Teacher@Home'),
         description: 'Teacher@Home',
         svg: (
           <svg width="100%" height="100%" viewBox="0 0 32 32">
@@ -69,4 +75,16 @@ class Service extends Component {
   }
 }
 
-export default Service;
+const mapStateToProps = (state) => {
+  return {
+    messages: state.messages
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // actions: bindActionCreators(actions, dispatch),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Service)

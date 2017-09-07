@@ -10,7 +10,6 @@ export default class extends Component {
           <br/>
           <h3>Service & Pricing</h3>
           <br/>
-          <br/>
           <Row>
             <Col xs="12" md="4">
               <Card className="PricingCard">

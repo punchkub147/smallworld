@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash'
+import styled from 'styled-components'
+import { color } from '../static/styles'
 
 import { Collapse, Button, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, NavDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import Link from 'next/link'
@@ -9,27 +11,41 @@ import FormRegister from '../components/FormRegister'
 
 import FormSearch from '../components/FormSearch'
 
-import { getUser, logout } from '../api/firebase'
+import { getUser, logout, getUserData } from '../api/firebase'
 
-export default class extends Component {
+// REDUX
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { changeLanguage, userLogin, didLoading } from '../store'
+
+class MyNavbar extends Component {
   state = {
     isOpen: false,
-    user: {},
     dropdownOpen: false,
   };
   
-  componentDidMount() {
-    getUser(user => {
-      this.setState({
-        user,
+  async componentDidMount() {
+    const { messages, changeLanguage, userLogin, didLoading, user } = this.props
+    
+    if(_.isEmpty(messages)){
+      await didLoading(true)
+      await changeLanguage('th')
+      await didLoading(false)
+    }
+    
+    if(_.isEmpty(user)) {
+      await didLoading(true)
+      getUser(async user => {
+        if(user){
+          const userData = await getUserData(user.uid)
+          userLogin(userData)
+        } else {
+          userLogin({})
+        }
       })
-    })
-  }
-
-  toggle = () => {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
+      await didLoading(false)
+    }
+    
   }
 
   handleLogout = () => {
@@ -39,34 +55,37 @@ export default class extends Component {
   }
 
   render() {
-    const { user } = this.state
-    const { url } = this.props
+    const { url, messages, user } = this.props
     const routes = [
       {
         path: '/',
-        name: 'Home',
+        name: messages['Home'],
       },
       {
         path: '/about',
-        name: 'About',
+        name: messages['About'],
+      },
+      {
+        path: '/news',
+        name: messages['News'],
       },
       {
         path: '/user',
-        name: 'Teacher&Nanny',
+        name: messages['Teacher&Nanny'],
       },
       {
         path: '/service',
-        name: 'Services&Pricing',
+        name: messages['Services&Pricing'],
       },
       {
         path: '/contact',
-        name: 'Contact',
+        name: messages['Contact'],
       },
     ]
     return (
-      <div id="Navbar">
+      <ID id="Navbar">
         <Navbar color="faded" light toggleable>
-          <NavbarToggler right onClick={this.toggle} />
+          <NavbarToggler right onClick={() => this.setState({isOpen: !this.state.isOpen})} />
           <NavbarBrand href="/">Small World</NavbarBrand>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -99,7 +118,7 @@ export default class extends Component {
                   <DropdownMenu className="dropdown-menu">
                     <DropdownItem header>{/*user.email*/}</DropdownItem>
                     <DropdownItem>
-                      <Link prefetch href="/profile/info">
+                      <Link prefetch href="/profile/edit">
                         Edit Profile
                       </Link>
                     </DropdownItem>
@@ -112,20 +131,77 @@ export default class extends Component {
                   </DropdownMenu>
                 </NavDropdown>
 
-                // <NavItem>
-                //   <Link prefetch href="/profile/info">
-                //     <Button color="primary">Edit Profile</Button>
-                //   </Link>
-                // </NavItem>
-                // <NavItem>
-                //   <Button>Logout</Button>
-                // </NavItem>
               }
-              
+              <NavItem>
+                <div className="nav-link">
+                  <a style={{cursor: 'pointer'}} onClick={() => this.props.changeLanguage('th')}>TH</a>
+                </div>
+              </NavItem>
+              <NavItem>
+                <div className="nav-link">
+                  <a style={{cursor: 'pointer'}} onClick={() => this.props.changeLanguage('en')}>EN</a>
+                </div>
+              </NavItem>
+            
             </Nav>
           </Collapse>
         </Navbar>
-      </div>
+      </ID>
     );
   }
 }
+
+
+const mapStateToProps = (state) => {
+  return {
+    messages: state.messages,
+    user: state.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeLanguage: bindActionCreators(changeLanguage, dispatch),
+    userLogin: bindActionCreators(userLogin, dispatch),
+    didLoading: bindActionCreators(didLoading, dispatch),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyNavbar)
+
+
+const ID = styled.div`
+  border-bottom: 10px solid ${color.sub};
+  .login{
+    color: red;
+  }
+  .nav-group{
+    margin-right: 10px;
+  }
+  ul{
+    li{
+      a{
+        text-decoration: none;
+        color: ${color.textgray};
+        text-align: center;
+        box-sizing: border-box;
+        transition: 0.15s ease-in;
+      }
+      a:hover{
+        color: ${color.sub};
+        text-shadow: -0.2px 0 ${color.sub}, 0 0.2px ${color.sub}, 0.2px 0 ${color.sub}, 0 -0.2px ${color.sub};
+      }
+    }
+  }
+
+  #active{
+    a{
+      color: ${color.sub};
+      text-shadow: -0.2px 0 ${color.sub}, 0 0.2px ${color.sub}, 0.2px 0 ${color.sub}, 0 -0.2px ${color.sub};
+    }
+  }
+
+  .dropdown-menu{
+    right: 0;
+  }
+`
