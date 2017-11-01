@@ -86,7 +86,7 @@ class MyNavbar extends Component {
       <ID id="Navbar">
         <Navbar color="faded" light toggleable>
           <NavbarToggler right onClick={() => this.setState({isOpen: !this.state.isOpen})} />
-          <NavbarBrand href="/">Small World</NavbarBrand>
+          <NavbarBrand href="/" style={{ color: '#b6d379'}}>Small World Service Center</NavbarBrand>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
             {_.map(routes, route => 
@@ -104,11 +104,13 @@ class MyNavbar extends Component {
 
               {_.isEmpty(user)?
                 <NavItem>
-                  <Modal btnText="SignIn&SignUp" title="Sign In">
-                    <FormLogin/>
-                    <hr/>
-                    <FormRegister/>
-                  </Modal>
+                {
+                  // <Modal btnText="SignIn&SignUp" title="Sign In">
+                  //   <FormLogin/>
+                  //   <hr/>
+                  //   <FormRegister/>
+                  // </Modal>
+                }
                 </NavItem>
                 :
                 <NavDropdown isOpen={this.state.dropdownOpen} toggle={() => this.setState({dropdownOpen: !this.state.dropdownOpen})}>

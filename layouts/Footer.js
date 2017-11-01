@@ -47,7 +47,7 @@ class MyFooter extends Component {
         <div className="connect">
           <Container>
             <div className="text">GET START</div>
-            <FormSearch/>
+            <FormSearch />
           </Container>
         </div>
 
@@ -55,7 +55,7 @@ class MyFooter extends Component {
           <Container>
             <Row>
               <Col xs="12" md="4">
-                <h5>About Total</h5>
+                <h5>All About</h5>
                 <p>Small World Service Center</p>
                 <p>Maid&Nancy</p>
                 <p>Nursery</p>
@@ -76,11 +76,12 @@ class MyFooter extends Component {
                 <br/>
               </Col>
               <Col xs="12" md="4">
-                <h5>Get Social</h5>
-                <p>Contact</p>
-                <p>Address: qwewqeqweqeqwe</p>
-                <p>Email: qweqweqweqweq</p>
-                <p>Tel: qweqweqwe</p>
+                <h5>Contact Us</h5>
+                <p>Address: <br/>956/14, The Winning Tower Compound, 
+                   Pridi Banumyong Soi 40, Sukhumvit 71 Road, 10110 Bangkok, Thailand</p>
+                <p>Line: @smallworld.nanny</p>
+                <p ><a href="https://www.facebook.com/SmallWorldServiceCenter/">FB: fb.com/smallworld.nanny</a></p>
+                <p>Tel: 094 994 9554</p>
                 <br/>
               </Col>
             </Row>

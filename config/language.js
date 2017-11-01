@@ -6,8 +6,8 @@ export default {
       'Home': 'Home',
       'About': 'About',
       'News': 'News',
-      'Teacher&Nanny': 'Teacher&Nanny',
-      'Services&Pricing': 'Services&Pricing',
+      'Teacher&Nanny': 'Nursery',
+      'Services&Pricing': 'Pricing',
       'Contact': 'Contact',
       //
       'bannerSub': 'พวกเราเป็นผู้ให้บริการจัดหาพี่เลี้ยง , คุณครูที่บ้าน และ เนิสเซอรี่ ที่เป็นชาวฟิลิปินส์ โดยคุณสามารถออกแบบบริการของเราได้ด้วยตัวคุณเอง',
@@ -96,9 +96,9 @@ export default {
       // NAV
       'Home': 'หน้าแรก',
       'About': 'เกี่ยวกับเรา',
-      'News': 'ข่าวอัพเดท',
-      'Teacher&Nanny': 'ครู&พี่เลี้ยงเด็ก',
-      'Services&Pricing': 'บริการ&ราคา',
+      'News': 'ข่าวสาร',
+      'Teacher&Nanny': 'พี่เลี้ยงเด็ก',
+      'Services&Pricing': 'ราคา',
       'Contact': 'ติดต่อเรา',
       'SignIn&SignUp': 'เข้าใช้งาน&ลงทะเบียน',
       'SmallWorldServicesCenter': 'สมอลเวิลด์เซอวิสต์เซ็นเตอร์',
@@ -128,7 +128,7 @@ export default {
       'Position Nanny': 'ตำแหน่งพี่เลี้ยง',
 
       'Search': 'ค้นหา',
-      'Search Nanny': 'ค้นหาครูและพี่เลี้ยง',
+      'Search Nanny': 'ค้นหาพี่เลี้ยง',
 
       // FormProfile
       'Firstname': 'ชื่อ',
