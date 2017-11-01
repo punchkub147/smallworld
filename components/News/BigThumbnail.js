@@ -20,11 +20,13 @@ class NewsBigThumbnail extends Component {
           <Row>
             <Col sm="6">
             <Link perfect href={`/news/detail?id=${id}`}>
-              <CardImg className="image" top width="100%" src={data.image} alt="Card image cap" />
+              <CardImg className="image" top width="100%" style={{padding:'10px'}} src={data.image} alt="Card image cap" />
             </Link>
             </Col>
             <Col sm="6">
+            <Link perfect href={`/news/detail?id=${id}`}>
               <CardBlock>
+                
                 <CardTitle className="title">{data.title}</CardTitle>
                 <CardSubtitle className="detail">{data.detail}</CardSubtitle>
                 <CardText>{moment(data.createAt).format("MMM Do YY")}</CardText>
@@ -32,6 +34,7 @@ class NewsBigThumbnail extends Component {
                 <NewsDelete id={id}/>
 
               </CardBlock>
+            </Link>
             </Col>
           </Row>
         </Card>

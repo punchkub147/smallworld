@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import _ from 'lodash'
+import styled from 'styled-components'
 
 // REDUX
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+
+const BigH = styled.h1`
+  font-size: 50px;
+  color: #5d7925;
+  font-weight: bold;
+  `
 
 class Service extends Component {
 
@@ -49,7 +56,7 @@ class Service extends Component {
     
     return (
       <div id="Service">
-        <h1>OUR SERVICE</h1>
+        <BigH >OUR SERVICE</BigH>
         <br/>
         <h3>This is a simple hero unit, a simple Jumbotron-style component for calling extra attention to featured content or information.</h3>
         <br/>
@@ -59,12 +66,14 @@ class Service extends Component {
             <Row>
               {datas.map(data => 
                 <Col md="4" className="card">
+                  <div className="jackInTheBox">
                   <div className="icon">
                     {data.svg} 
                   </div>
                   <br/>
                   <div className="title">{data.title}</div>
                   <div className="description">{data.description}</div>
+                  </div>
                 </Col>
               )}
             </Row>

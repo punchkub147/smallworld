@@ -16,6 +16,7 @@ class NewsAdd extends Component {
     image: '',
     title: '',
     detail: '',
+    content: '',
     file: '',
     modal: false,
     disableBtn: false,
@@ -24,7 +25,7 @@ class NewsAdd extends Component {
   handleAdd = async (e) => {
     e.preventDefault()
     this.setState({disableBtn: true})
-    const { file, title, detail } = this.state
+    const { file, title, detail, content } = this.state
     const id = cuid()
     const image = await uploadNewsImage(file, id)
     const news = {
@@ -32,6 +33,7 @@ class NewsAdd extends Component {
       image,
       title,
       detail,
+      content,
     }
     createNews(news)
     this.openModal()
@@ -39,6 +41,7 @@ class NewsAdd extends Component {
       image: '',
       title: '',
       detail: '',
+      content:'',
       file: '',
       disableBtn: false
     })
@@ -93,6 +96,7 @@ class NewsAdd extends Component {
           <Label sm={12}>Detail</Label>
           <Col sm={12}>
             <Input type="textarea" style={{height: '150px'}} onChange={(e) => this.setState({detail: e.target.value})}/>
+            
           </Col>
         </FormGroup>
 

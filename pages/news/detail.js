@@ -41,10 +41,21 @@ class NewsDetail extends Component {
             <div className="row justify-content-md-center">
               <Col xs="12" sm="12" md="12">
                 <Card>
-                  <CardImg className="image" style={{height: 300, 'object-fit': 'contain'}} top width="100%" src={_.get(newsData, 'image')} alt="Card image cap" />
+                  <CardImg className="image" style={{height: 300, 'object-fit': 'contain', padding:'10px'}} top width="100%" src={_.get(newsData, 'image')} alt="Card image cap" />
                   <CardBlock>
-                    <CardSubtitle className="title">{_.get(newsData, 'title')}</CardSubtitle>
-                    <CardText className="detail">{_.get(newsData, 'detail')}</CardText>
+                    <CardSubtitle style={{padding: '20px',fontSize: '30px'}} className="title">{_.get(newsData, 'title')}</CardSubtitle>                                        
+                    <CardText className="herald" >{_.get(newsData, 'herald')}</CardText>
+                    <CardText className="header1" style={{fontSize: '20px'}}>{_.get(newsData, 'header1')}</CardText>                    
+                    <CardText className="content" >{_.get(newsData, 'content')}</CardText>
+                    <CardText className="header2" style={{fontSize: '20px'}}>{_.get(newsData, 'header2')}</CardText>
+                    <CardText className="content2" >{_.get(newsData, 'content2')}</CardText>
+                    <CardText className="header3" style={{fontSize: '20px'}}>{_.get(newsData, 'header3')}</CardText>
+                    <CardText className="content3" >{_.get(newsData, 'content3')}</CardText>
+                    <CardText className="header4" style={{fontSize: '20px'}}>{_.get(newsData, 'header4')}</CardText>
+                    <CardText className="content4" >{_.get(newsData, 'content4')}</CardText>
+                    <CardText className="header5" style={{fontSize: '20px'}}>{_.get(newsData, 'header5')}</CardText>
+                    <CardText className="content5" >{_.get(newsData, 'content5')}</CardText>
+
                     <CardText>{moment(_.get(newsData, 'createAt')).format("MMM Do YY")}</CardText>
                   </CardBlock>
                 </Card>

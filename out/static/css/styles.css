@@ -1,22 +1,55 @@
+body {
+  font-family: kanit;
+}
+
+
+.loader {
+  position: absolute;
+  left:45%;
+  top: 40%;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #5d7925;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  
+}
+
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 input[type="button"] {
   outline: none; }
 
 input[type="button"]::-moz-focus-inner {
   border: 0; }
 
-.btn-primary, .btn-primary:hover, .btn-primary:focus {
+ .btn-primary, .btn-primary:hover, .btn-primary:focus {
   background: #d9c5a4;
   border-color: #d9c5a4; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none; } 
 
 button {
-  cursor: pointer; }
+  cursor: pointer; } 
+
+
 
 #App {
   min-height: 100vh;
   position: relative; }
+  
 
 #Banner {
   width: 100%;
@@ -118,11 +151,9 @@ button {
 #Service {
   text-align: center;
   padding: 50px;
-  box-sizing: border-box; }
-  #Service h1 {
-    font-size: 50px;
-    color: #5d7925;
-    font-weight: bold; }
+  box-sizing: border-box;
+  }
+  
   #Service h3 {
     font-size: 18px; }
   #Service .card {
@@ -299,13 +330,14 @@ button {
     min-height: 80px;
     color: white;
     font-size: 30px;
-    line-height: 80px;
+    line-height: 30px;
     background: #b6d379; }
     #Footer .connect .text {
-      float: left; }
+      float: left;
+      line-height: 80px; }
     #Footer .connect button {
       float: right;
-      margin-top: 23px; }
+      margin-top: 10px; }
   #Footer .content {
     padding: 30px 0;
     background: #333;

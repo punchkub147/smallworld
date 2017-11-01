@@ -22,7 +22,7 @@ class Banner extends Component {
                 </div>
               </Col>
               <Col xs="12" md="6">
-                <div className="text">Open Time 10:00-18:00</div>
+                <div className="text">Open Time <br/>10:00-18:00</div>
               </Col>
             </Row>
           </Col>
@@ -36,6 +36,9 @@ class Banner extends Component {
               </Col>
               <Col xs="12" md="6">
                 <div className="text">Address</div>
+                <p style={{fontSize: '12px'}}>956/14, The Winning Tower Compound, 
+                Pridi Banumyong Soi 40, Sukhumvit 71 Road, 10110 Bangkok, Thailand</p>
+                
               </Col>
             </Row>
           </Col>
@@ -80,13 +83,17 @@ class Banner extends Component {
               <br/>
             </Col>
             <Col xs="12" sm="12" md="5">
-              <h3>Before Sending a message</h3>
-              <p>qweqweqwewqewqewqqwewqe
-              qweqweqweqweqweqweqwe qe qwe qwe qwe qwqeqwe</p>
+              <h3>Contact Us</h3>
+              <p>Address: <br/> 
+              956/14, The Winning Tower Compound, <br/>Pridi Banumyong Soi 40, Sukhumvit 71 Road, 10110 Bangkok, Thailand
+              <br/>Line: @smallworld.nanny
+              
+              <br/>FB: fb.com/smallworld.nanny
+              
+              <br/>Tel: 094 994 9554</p>
               <br/>
               <br/>
-              <br/>
-              <p>qweqweqwewqewqewqee</p>
+              <br/>              
             </Col>
           </Row>
           <hr/>

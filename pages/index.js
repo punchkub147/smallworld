@@ -30,12 +30,8 @@ class Home extends Component {
           <Banner/>
           
           <Row className="content">
-            <Col sm="12" md="4">
-              <div className="register">
-                <FormRegister/>
-              </div>
-            </Col>
-            <Col sm="12" md="8">
+            
+            <Col sm="12" md="12">
               <Carousel/>
             </Col>
           </Row>
@@ -60,7 +56,7 @@ export default withRedux(initStore, null, mapDispatchToProps)(Home)
 const ID = styled.div`
   .content{
     margin: 0;
-    padding: 30px 10px;
+    padding: 15px 5px;
     box-sizing: border-box;
     background: ${color.main};
 

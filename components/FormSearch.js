@@ -4,10 +4,40 @@ import { Col, Button, Form, FormGroup,
 } from 'reactstrap';
 import Router from 'next/router'
 import _ from 'lodash'
+import styled from 'styled-components'
+
 
 // REDUX
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+
+const ButtonSearch = styled.button`
+background: 0 0;
+border-radius: 2px;
+cursor: pointer;
+display: block;
+height: 60px;
+line-height: 60px;
+padding: 0 30px 0 25px;
+position: relative;
+transition: all .3s;
+border: 2px solid #fff;
+float:right;
+
+letter-spacing: 2px;
+text-transform: uppercase;
+z-index: 0;
+
+color: #fff;
+overflow: hidden;
+margin-top: 30px;
+
+font-size: 18px;
+:hover {
+  background: #fff;
+  color: #56ab2f;
+}
+`;
 
 class FormSearch extends Component {
   state = { 
@@ -148,7 +178,7 @@ class FormSearch extends Component {
     return (
       <div id="Search">
 
-        <Button color="primary" onClick={this.openModal}>{messages['Search Nanny']}</Button>
+        <ButtonSearch color="primary" onClick={this.openModal}>{messages['Search Nanny']}</ButtonSearch>
         
         <Modal isOpen={this.state.modal} toggle={this.openModal}>
           <ModalHeader toggle={this.openModal}>{messages['Search Nanny']}</ModalHeader>

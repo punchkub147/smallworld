@@ -39,7 +39,7 @@ class NewsFeed extends Component {
           <Row>
           {_.map(threeNews, data =>
             <Col xs="12" md="4" lg="4">
-              <Thumbnail data={data} id={data.key}/>
+              <Thumbnail data={data} id={data.key} />
             </Col>
           )}
           </Row>

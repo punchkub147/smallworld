@@ -57,7 +57,7 @@ class FormRegister extends Component {
 
   render() {
     return (
-      <div id="FormRegister">
+      <div id="FormRegister"  >
         <h1>Join To Small World</h1>
         <Form onSubmit={this.handleRegister}>
           <FormGroup>
